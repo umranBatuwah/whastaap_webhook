@@ -58,13 +58,13 @@ exports.handler = async (event) => {
     }
 };
 
-async function sendQuickReply(toNumber, messageId, text) {
+async function sendQuickReply(toNumber, messageId, text, token) {
     try {
         const url = `https://graph.facebook.com/v18.0/208582795666783/messages`;
 
         const headers = {
             'Content-Type': 'application/json',
-            'Authorization': `Bearer EAALR8QvTSnIBO8joyen45PAMWqErS6cYsXRgZAH0qncJedyeZBc4qO24IFZAztzvCkfgQE3rVWKQoZBI8pfeYsthQvuyffMSEf2BXjPvLvDHHLEd4CYi2HMQ9BPbznvIOVEBZAeHBDZBYtR6unJKZAddk12N7lEbiWfHYRz9u0l7Hsd5ZB0rA2265JSjI3xr5Xvga6UjjX8C97peFFPSMIoZD`,
+            'Authorization': "Bearer " + token ,
         };
 
         const data = {
