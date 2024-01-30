@@ -15,6 +15,27 @@ module.exports.getProductCategories = async () => {
     }
 }
 
+
+
+module.exports.createOrder = async (order) => {
+    // console.log(order)
+    try {
+        const response = await axios.post("https://44308b.myshopify.com/admin/api/2024-01/orders.json", order, {
+            headers: {
+                'Content-Type': 'application/json',
+                'X-Shopify-Access-Token': process.env.shopify,
+            },
+        });
+
+        console.log(response)
+        return response; // Assuming you want to return the created custom collection
+    } catch (error) {
+        console.error('Error creating order:', error);
+        throw error;
+    }
+}
+
+
 module.exports.sendWhatsAppMessage = async (toNumber, productname, image, whatsappToken) => {
     try {
         const myHeaders = {
@@ -65,7 +86,7 @@ module.exports.sendWhatsAppMessage = async (toNumber, productname, image, whatsa
             redirect: 'follow',
         };
 
-        const response = await axios.post("https://graph.facebook.com/v17.0/208582795666783/messages", raw, requestOptions);
+        const response = await axios.post("https://graph.facebook.com/v19.0/208582795666783/messages", raw, requestOptions);
         const result = response.data;
         console.log(result);
     } catch (error) {
@@ -73,6 +94,9 @@ module.exports.sendWhatsAppMessage = async (toNumber, productname, image, whatsa
         throw error;
     }
 }
+
+
+
 
 async function fetchAndLogCategories() {
     try {
@@ -83,5 +107,7 @@ async function fetchAndLogCategories() {
     }
 }
 
+
+
 // Invoke the async function
-fetchAndLogCategories();
+// fetchAndLogCategories()
